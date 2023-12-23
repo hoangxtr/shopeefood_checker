@@ -29,17 +29,22 @@ headers = {
     'x-sap-sec': 'LiUiKXrXgTX9iTX9j4XqiTj9j4X9iTj9iTX8iTX9yTA9iuj9iTXTiTX9jt/3edr9iT8diTX9LTX9iT7zzqe/Na00mSmvv8MBNqH4L0jHEBEW43k0yXauBCUU14KNMNHdHAgEL6fMOovGEshIsNdr6KPFU+vODrdvFHg/Mjfnx7Wz4h1C/4G4NK9nRyrD9kJcr4X3M6xCRnRQLNY5WohAmuSHbpzNzEum17AIEq87X79nWXgRlEXIXVqeAoWlq1eBaTXMCJUEE9FO2amFb1F4FKiXmSzllO59HAhMVfzOdUhnZ5yQNtzqiTX9amAQaJ9PxmV9iTX94t/3edr9iTXaiTX9zTX9i9HX9BHbpXPYJa4/EjwxI1ztM5d0jdX9iFjcbByrbfj9fTX1iTr9jTXqiTX9fTX9iAN9iTXyiTX93/eTo2eBM3kjz5pxxC7W7BO1DgwFiTX9bFj+aFjNuyW=',
 }
 
-params = {
-    'from_date': '2023-12-01',
-    'restaurant_ids': '1192464',
-    'to_date': '2023-12-22',
-}
+# params = {
+#     'from_date': '2023-12-01',
+#     'restaurant_ids': '1192464',
+#     'to_date': '2023-12-22',
+# }
 
 class ShopeeFoodDataTracking:
     def __init__(self) -> None:
         self.data = None
     
     def get_item_histories(self):
+        params = {
+            'from_date': datetime.now().date().strftime("%Y-%m-%d"),
+            'restaurant_ids': '1192464',
+            'to_date': datetime.now().date().strftime("%Y-%m-%d"),
+        }
         response = requests.get('https://gmerchant.deliverynow.vn/api/v5/seller/store/report/get_by_menu', headers=headers, params=params)
         return response.json()['data']
 
